@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="21.0.0">
+  <diagram id="c4context" name="C4 Context Diagram">
+    <mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="0" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="2" value="C4 Диаграмма контекста — MVP онлайн-открытия депозитов, Банк «Стандарт»" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1450" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- System boundary -->
+        <mxCell id="3" value="Банк «Стандарт» — Платформа онлайн-открытия депозитов (MVP)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#333333;dashed=1;strokeWidth=2;fontStyle=1;fontSize=13;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="190" y="60" width="1020" height="680" as="geometry" />
+        </mxCell>
+
+        <!-- EXTERNAL PEOPLE -->
+        <!-- Потенциальный клиент -->
+        <mxCell id="10" value="Потенциальный клиент&#xa;[Person]&#xa;&#xa;Новый клиент банка" style="shape=mxgraph.c4.person2;align=center;verticalAlign=top;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;fontSize=11;fontStyle=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="20" y="160" width="150" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- Существующий клиент -->
+        <mxCell id="11" value="Существующий клиент&#xa;[Person]&#xa;&#xa;Клиент банка с аккаунтом в интернет-банке" style="shape=mxgraph.c4.person2;align=center;verticalAlign=top;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;fontSize=11;fontStyle=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="20" y="410" width="150" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Менеджер кол-центра -->
+        <mxCell id="12" value="Менеджер кол-центра&#xa;[Person]&#xa;&#xa;Обрабатывает заявки с сайта" style="shape=mxgraph.c4.person2;align=center;verticalAlign=top;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;fontSize=11;fontStyle=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="160" width="150" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Менеджер бэк-офиса депозитов -->
+        <mxCell id="13" value="Менеджер бэк-офиса&#xa;[Person]&#xa;&#xa;Обрабатывает заявки из интернет-банка в АБС" style="shape=mxgraph.c4.person2;align=center;verticalAlign=top;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;fontSize=11;fontStyle=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="430" width="150" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- EXTERNAL SYSTEM -->
+        <!-- Телеком-оператор -->
+        <mxCell id="14" value="Телеком-оператор&#xa;[External System]&#xa;&#xa;Доставляет SMS-сообщения клиентам" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6b6b6b;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="620" y="820" width="220" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- INTERNAL SYSTEMS -->
+        <!-- Сайт -->
+        <mxCell id="20" value="Сайт&#xa;[Software System]&#xa;&#xa;PHP + React.js. Маркетинговый сайт. Форма заявки на депозит для новых клиентов" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CB5;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="240" y="150" width="230" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- Интернет-банк -->
+        <mxCell id="21" value="Интернет-банк&#xa;[Software System]&#xa;&#xa;ASP.NET MVC 4.5 / MS SQL. Подача заявки на депозит, OTP-подтверждение для существующих клиентов" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CB5;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="240" y="410" width="230" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Система кол-центра -->
+        <mxCell id="22" value="Система кол-центра&#xa;[Software System]&#xa;&#xa;React.js / Java Spring Boot / PostgreSQL. Обработка входящих заявок операторами" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CB5;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="830" y="150" width="250" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- АБС -->
+        <mxCell id="23" value="АБС&#xa;[Software System]&#xa;&#xa;Delphi / Oracle / PL-SQL. Управление ставками, обработка заявок бэк-офисом, открытие депозитов, отправка SMS-уведомлений" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CB5;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="830" y="420" width="250" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- СМС-шлюз -->
+        <mxCell id="24" value="СМС-шлюз&#xa;[Software System]&#xa;&#xa;Принимает запросы от АБС и интернет-банка, передаёт SMS телеком-оператору" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CB5;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="580" y="620" width="230" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- EDGES -->
+
+        <!-- Потенц. клиент → Сайт -->
+        <mxCell id="50" value="Просматривает ставки, подаёт заявку на депозит [HTTPS]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="10" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Существ. клиент → Интернет-банк -->
+        <mxCell id="51" value="Просматривает ставки, подаёт заявку, вводит OTP [HTTPS]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="11" target="21" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Сайт → Система кол-центра -->
+        <mxCell id="52" value="Передаёт заявку на депозит [HTTP API]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="20" target="22" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Сайт ← АБС (ставки) -->
+        <mxCell id="53" value="Получает актуальные ставки [HTTP API]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;dashed=1;" edge="1" source="23" target="20" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Менедж. кол-центра → Система кол-центра -->
+        <mxCell id="54" value="Просматривает и обрабатывает заявки [Web UI]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="12" target="22" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Интернет-банк → АБС (через буфер — пунктир показывает асинхронность) -->
+        <mxCell id="55" value="Передаёт заявки асинхронно через Integration Service [async]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="21" target="23" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- АБС → Интернет-банк (ставки через кэш) -->
+        <mxCell id="56" value="Ставки кэшируются через Integration Service [async]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;dashed=1;" edge="1" source="23" target="21" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Менедж. бэк-офиса → АБС -->
+        <mxCell id="57" value="Обрабатывает заявки, открывает депозиты [Delphi Client]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="13" target="23" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- АБС → СМС-шлюз -->
+        <mxCell id="58" value="Запрос на отправку уведомления [HTTP API]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="23" target="24" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Интернет-банк → СМС-шлюз (OTP) -->
+        <mxCell id="59" value="Запрос OTP-кода [HTTP API]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="21" target="24" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- СМС-шлюз → Телеком-оператор -->
+        <mxCell id="60" value="Передаёт SMS [API]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="24" target="14" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- LEGEND -->
+        <mxCell id="70" value="Легенда" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="10" y="880" width="100" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="71" value="Система в фокусе" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CB5;fontColor=#ffffff;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="10" y="910" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="72" value="Внешняя система" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6b6b6b;fontColor=#ffffff;fontSize=10;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="910" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="73" value="— — — Асинхронная связь" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="350" y="910" width="250" height="30" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
