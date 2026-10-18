@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="21.0.0">
+  <diagram id="c4componentsTask4" name="C4 Components — Rates Distribution">
+    <mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="0" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="2" value="C4 Диаграмма компонентов — Передача ставок в кол-центры (Task 4)" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1600" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ===== АБС (external for this view) ===== -->
+        <mxCell id="5" value="АБС (внешняя система для этой диаграммы)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6b6b6b;dashed=1;fontStyle=2;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="30" y="55" width="280" height="480" as="geometry" />
+        </mxCell>
+
+        <!-- ABS: Rates Management Module -->
+        <mxCell id="10" value="Rates Management Module&#xa;[Component: PL-SQL]&#xa;&#xa;Хранит актуальные ставки.&#xa;Источник истины для всех каналов" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CB5;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="55" y="100" width="230" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- ABS: Rates REST API endpoint -->
+        <mxCell id="11" value="Rates REST API&#xa;[Component: Java Spring Boot]&#xa;&#xa;Новый API endpoint в АБС.&#xa;GET /api/rates → JSON список ставок" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00875A;strokeColor=#006644;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="55" y="260" width="230" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- ABS: Oracle DB -->
+        <mxCell id="12" value="Oracle Database&#xa;[Component: Oracle]" style="shape=mxgraph.flowchart.database;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CB5;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="75" y="420" width="190" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- ===== DEPOSIT INTEGRATION SERVICE ===== -->
+        <mxCell id="6" value="Deposit Integration Service [Container: .NET]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#006644;strokeWidth=2;dashed=1;fontStyle=1;fontSize=12;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="370" y="55" width="380" height="480" as="geometry" />
+        </mxCell>
+
+        <!-- Rates Sync Job -->
+        <mxCell id="20" value="Rates Sync Job&#xa;[Component: .NET Scheduled Job]&#xa;&#xa;Ежедневно читает ставки из Oracle АБС (JDBC) → записывает в таблицу deposit_rates_cache (MS SQL ИБ)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00875A;strokeColor=#006644;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="390" y="100" width="330" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- SFTP Export Job -->
+        <mxCell id="21" value="SFTP Export Job&#xa;[Component: .NET Scheduled Job]&#xa;&#xa;Ежедневно читает ставки из Oracle АБС → генерирует CSV-файл → передаёт на SFTP-сервер партнёра (SftpClient)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00875A;strokeColor=#006644;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="390" y="270" width="330" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Apps Sync Job (existing from Task 3, shown for completeness) -->
+        <mxCell id="22" value="Apps Sync Job&#xa;[Component: .NET Scheduled Job]&#xa;&#xa;(Из Task 3) Синхронизирует заявки ИБ → АБС" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#666666;strokeColor=#444444;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="390" y="440" width="330" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- ===== СИСТЕМА КОЛ-ЦЕНТРА ===== -->
+        <mxCell id="7" value="Система кол-центра [Container: Java Spring Boot / React.js / PostgreSQL]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#0E5CB5;strokeWidth=2;dashed=1;fontStyle=1;fontSize=12;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="820" y="55" width="380" height="480" as="geometry" />
+        </mxCell>
+
+        <!-- Rates API Client -->
+        <mxCell id="30" value="Rates API Client&#xa;[Component: Java Scheduled Job]&#xa;&#xa;Новый компонент. Ежедневно вызывает ABS Rates REST API → сохраняет ставки в PostgreSQL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00875A;strokeColor=#006644;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="840" y="100" width="340" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Rates Display Component -->
+        <mxCell id="31" value="Rates Display UI&#xa;[Component: React.js]&#xa;&#xa;Новый компонент. Страница «Ставки депозитов» в интерфейсе операторов кол-центра" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00875A;strokeColor=#006644;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="840" y="270" width="340" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- PostgreSQL -->
+        <mxCell id="32" value="PostgreSQL Database&#xa;[Component: PostgreSQL]&#xa;&#xa;Хранит синхронизированные ставки (таблица deposit_rates)" style="shape=mxgraph.flowchart.database;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CB5;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="860" y="420" width="290" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- ===== EXTERNAL ===== -->
+        <!-- SFTP Server (partner) -->
+        <mxCell id="40" value="SFTP-сервер партнёра&#xa;[External Infrastructure]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=11;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="600" width="330" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Partner CC System -->
+        <mxCell id="41" value="Система партнёрского КЦ&#xa;[External System]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#6b6b6b;fontColor=#ffffff;fontSize=11;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="710" width="330" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- MS SQL IB (for context) -->
+        <mxCell id="42" value="MS SQL Database (ИБ)&#xa;[External Container]" style="shape=mxgraph.flowchart.database;whiteSpace=wrap;html=1;fillColor=#666666;strokeColor=#444444;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="160" y="600" width="200" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Operator actor -->
+        <mxCell id="43" value="Оператор кол-центра&#xa;[Person]" style="shape=mxgraph.c4.person2;align=center;verticalAlign=top;fillColor=#08427B;strokeColor=#073B6F;fontColor=#ffffff;fontSize=10;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="260" width="120" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- EDGES -->
+
+        <!-- ABS Rates Management → Oracle -->
+        <mxCell id="60" value="PL-SQL" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="10" target="12" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ABS Rates API → Oracle -->
+        <mxCell id="61" value="читает [JDBC]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="11" target="12" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Rates Sync Job → Oracle (reads rates) -->
+        <mxCell id="62" value="читает ставки [JDBC]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;strokeColor=#00875A;" edge="1" source="20" target="12" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Rates Sync Job → MS SQL IB (writes cache) -->
+        <mxCell id="63" value="кэширует ставки [SQL]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;strokeColor=#00875A;" edge="1" source="20" target="42" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- SFTP Export Job → Oracle (reads rates) -->
+        <mxCell id="64" value="читает ставки [JDBC]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;strokeColor=#00875A;" edge="1" source="21" target="12" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- SFTP Export Job → SFTP Server -->
+        <mxCell id="65" value="CSV файл [SFTP]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="21" target="40" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- SFTP Server → Partner CC -->
+        <mxCell id="66" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;dashed=1;" edge="1" source="40" target="41" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ABS Rates API → Rates API Client (call center) -->
+        <mxCell id="67" value="GET /api/rates [HTTP]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;strokeColor=#00875A;" edge="1" source="11" target="30" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Rates API Client → PostgreSQL -->
+        <mxCell id="68" value="сохраняет ставки [SQL]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="30" target="32" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Rates Display UI → PostgreSQL -->
+        <mxCell id="69" value="читает ставки [SQL]" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="31" target="32" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Operator → Rates Display UI -->
+        <mxCell id="70" value="просматривает" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=10;" edge="1" source="43" target="31" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- LEGEND -->
+        <mxCell id="80" value="Легенда" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="820" y="820" width="100" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="81" value="Новый компонент 🆕" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00875A;strokeColor=#006644;fontColor=#ffffff;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="820" y="850" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="82" value="Существующий компонент" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0E5CB5;fontColor=#ffffff;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="850" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="83" value="Из Task 3 (без изменений)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#666666;strokeColor=#444444;fontColor=#ffffff;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="850" width="200" height="30" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
